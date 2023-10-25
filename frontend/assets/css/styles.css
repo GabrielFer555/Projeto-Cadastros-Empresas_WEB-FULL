@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredericka+the+Great&family=IBM+Plex+Sans:wght@600&family=Kanit:wght@300&family=Merriweather&family=Montserrat:wght@900&family=Open+Sans:ital,wght@0,400;0,700;1,300;1,400&family=Oswald:wght@400;600;700&family=Pacifico&family=Poppins:wght@500&family=Roboto:ital,wght@0,100;0,300;1,100;1,300&family=Sigmar&display=swap');
+
+:root{
+    --black:#000;
+    --grey: #8b8888;
+    --darkmid: #1e272e;
+    --whitebg: #fff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.darkbg, .navbar-dark{
+    background:var(--darkmid) ;
+}
+
+.j-between{
+    justify-content: space-between;
+    width: 100%;
+}
+.square{
+    width: 18rem;
+    height: 10rem;
+    background-color: #05c46b;
+    margin: 2rem;
+    border: 0.2rem solid var(--black);
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem var(--black);
+    transition: all ease-in-out 0.5s;
+    opacity: 0.5;
+    scale: 0.8;
+    color: var(--whitebg);
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+}
+.square:hover{
+    box-shadow: 0.5rem 0.5rem var(--grey) ;
+    scale: 1;
+    opacity: 1;
+}
+.nullTable{
+    text-align: center;
+    opacity:0.7;
+}
+.toRight{
+    display: flex;
+    justify-content: right;
+    align-items: start;
+}
+ .material-icons{
+    font-size: 5rem;
+}
+.span-num{
+    font-size: 2rem;
+}
