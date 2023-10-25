@@ -42,6 +42,7 @@
     box-shadow: 0.5rem 0.5rem var(--grey) ;
     scale: 1;
     opacity: 1;
+    cursor: pointer;
 }
 .nullTable{
     text-align: center;
@@ -54,6 +55,10 @@
 }
  .material-icons{
     font-size: 5rem;
+}
+#companyIcon{
+    font-size: 3rem;
+
 }
 .span-num{
     font-size: 2rem;
