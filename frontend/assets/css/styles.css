@@ -5,12 +5,17 @@
     --grey: #8b8888;
     --darkmid: #1e272e;
     --whitebg: #fff;
+    --modalbg:#2c3e50;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+select option::selection{
+    background: #1e272e;
 }
 
 
@@ -37,6 +42,7 @@
     text-align: center;
     overflow: hidden;
     font-family: 'Pacifico', cursive;
+    position: relative;
 }
 .square:hover{
     box-shadow: 0.5rem 0.5rem var(--grey) ;
@@ -52,6 +58,9 @@
     display: flex;
     justify-content: right;
     align-items: start;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
  .material-icons{
     font-size: 5rem;
@@ -62,4 +71,18 @@
 }
 .span-num{
     font-size: 2rem;
+}
+.cadLink{
+    font-size: 1rem;
+    text-decoration: underline;
+    color: var(--darkmid);
+    z-index: -1;
+}
+.trashcan{
+    background: none;
+    border: none;
+}
+
+.modal-custom{
+    background: #d1d1d1;
 }
