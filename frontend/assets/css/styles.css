@@ -2,7 +2,7 @@
 
 :root{
     --black:#000;
-    --grey: #8b8888;
+    --grey: #d8d4d4;
     --darkmid: #1e272e;
     --whitebg: #fff;
     --modalbg:#2c3e50;
@@ -25,6 +25,7 @@ select option::selection{
 .darkbg, .navbar-dark{
     background:var(--darkmid) ;
 }
+
 
 .j-between{
     justify-content: space-between;
@@ -87,5 +88,10 @@ select option::selection{
 }
 
 .modal-custom{
-    background: #d1d1d1;
+    background: var(--grey);
 }
+
+div .dataTables_filter input {
+    width: 30rem;
+    border-radius: 2rem;
+  }
