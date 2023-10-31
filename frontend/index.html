@@ -270,24 +270,7 @@
         <script src="/frontend/node_modules/notyf/notyf.min.js"></script>
         <script>
             $(document).ready(function () {
-                function mensagem(msg, type = 1, duration = 1000, x = "left", y = "bottom") {
-                    console.log($(".form-control"))
-                    const i = new Notyf({
-                        duration: duration,
-                        position: {
-                            x: x,
-                            y: y
-                        },
-                    });
-                    switch (type) {
-                        case 1:
-                            i.success(msg);
-                            break;
-                        case 2:
-                            i.error(msg);
-                            break;
-                    }
-                }
+               
                 $("#modalCadastro").on("show.bs.modal", function () {
                     $("#bornDate").mask('00/00/0000');
                     $(".telephone").mask('(00) 0000-0000');
@@ -321,7 +304,24 @@
                 })
 
             })
-
+            function mensagem(msg, type = 1, duration = 1000, x = "left", y = "bottom") {
+                    console.log($(".form-control"))
+                    const i = new Notyf({
+                        duration: duration,
+                        position: {
+                            x: x,
+                            y: y
+                        },
+                    });
+                    switch (type) {
+                        case 1:
+                            i.success(msg);
+                            break;
+                        case 2:
+                            i.error(msg);
+                            break;
+                    }
+                }
         </script>
 </body>
 
