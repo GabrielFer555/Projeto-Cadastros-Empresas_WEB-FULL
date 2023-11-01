@@ -16,6 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-mnc-company-1956292-1650455.png" type="image/x-icon">
 </head>
 
 <body>
@@ -147,7 +148,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputField">Nome Fornec.:</label>
-                                    <input type="text" class="form-control" id="inputField">
+                                    <input type="text" class="form-control modalInput" id="inputField">
                                 </div>
                             </div>
                             <div class="col-sm-4 ms-1">
@@ -161,20 +162,20 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="docInsertion" id="cpfLabel" class="form-label">CPF:</label>
-                                    <input type="text" class="form-control" name="docInsertion" id="docInsertion"
+                                    <input type="text" class="form-control modalInput" name="docInsertion" id="docInsertion"
                                         aria-describedby="documented" placeholder="Insira o CPF do Fornecedor..">
                                 </div>
                             </div>
                             <div class="col-md-2 caseFisica">
                                 <div class="form-group">
                                     <label for="bornDate">Data de Nascimento:</label>
-                                    <input type="text" class="form-control" id="bornDate" placeholder="00/00/0000">
+                                    <input type="text" class="form-control modalInput" id="bornDate" placeholder="00/00/0000">
                                 </div>
                             </div>
                             <div class="col-md-4 caseFisica">
                                 <div class="form-group">
                                     <label for="bornDate">RG:</label>
-                                    <input type="text" class="form-control d-flex" id="rgCase"
+                                    <input type="text" class="form-control d-flex modalInput" id="rgCase"
                                         placeholder="Insira o RG">
                                 </div>
                             </div>
@@ -183,7 +184,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="companiesSelect" class="form-label">Empresa Vinc.:</label>
-                                    <select name="companiesSelect" id="companiesSelect" class="form-control">
+                                    <select name="companiesSelect modalInput" id="companiesSelect" class="form-control">
                                         <option value="one" selected>Selecione uma Empresa</option>
                                         <!---- Opções retornadas da API-->
                                     </select>
@@ -230,7 +231,7 @@
                                     <legend class="col-form-legend col-4">Contatos:</legend>
                                     <div class="mb-3 row">
                                         <div class="col-8">
-                                            <input type="text" class="form-control telephone" name="inputName"
+                                            <input type="text" class="form-control telephone modalInput" name="inputName"
                                                 id="inputTel1" placeholder="Telefone 1">
                                         </div>
                                     </div>
@@ -257,7 +258,7 @@
                 </div>
             </div>
         </div>
-        <script src="/frontend/assets/js/script.js"></script>
+        <script src="./assets/js/script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
         <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -265,7 +266,7 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-        <script src="/frontend/node_modules/notyf/notyf.min.js"></script>
+        <script src="./node_modules/notyf/notyf.min.js"></script>
         <script>
             $(document).ready(function () {
                 $("#tableRegisters").DataTable({
@@ -285,8 +286,8 @@
                     $("#bornDate").mask('00/00/0000');
                     $(".telephone").mask('(00) 0000-0000');
                     $(".celphone").mask('(00) 00000-0000');
+                    $("#docInsertion").mask('000.000.000-00');
                     $(".radio").on("change", function () {
-                        $("#docInsertion").removeAttr("disabled", true);
                         if ($("#juridicas").is(":checked")) {
                             $("#cpfLabel").text("CPNJ");
                             $("#docInsertion").focus();
@@ -303,12 +304,19 @@
                         }
                     })
                     $("#saveBtn").on("click", function () {
-                        mensagem("Hello");
+                        const emptyFields = document.getElementsByClassName("modalInput");
+                        for(let i = 0; i < emptyFields.length; i++){
+                            if(!emptyFields[i].value || emptyFields[i].value.trim()== ""){
+                                console.log(emptyFields[i].value)
+                                emptyFields[i].focus();
+                                mensagem("Campos obrigatórios vazios, favor verificar!",2, 1900)
+                                break;
+                            }
+                        }
+                        })
                     })
-                })
+                
                 $("#modalCadastro").on("hide.bs.modal", function () {
-                    $("#docInsertion").attr("disabled", true);
-                    $("#docInsertion").attr("placeholder", "");
                     $(".form-control").val(null);
 
                 })
@@ -331,15 +339,6 @@
                         i.error(msg);
                         break;
                 }
-            }
-            function captureData(rowId) {
-                var row = $('#' + rowId); // Get the clicked row by its ID
-                var cells = row.find('td'); // Get all cells in the row
-
-                // Extract and display the data from each cell
-                cells.each(function () {
-                    console.log($(this).text()); // Print the data from each cell
-                });
             }
         </script>
 </body>
