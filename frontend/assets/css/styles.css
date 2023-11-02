@@ -2,7 +2,7 @@
 
 :root{
     --black:#000;
-    --grey: #d8d4d4;
+    --grey: #cfcfcf;
     --darkmid: #1e272e;
     --whitebg: #fff;
     --modalbg:#2c3e50;
@@ -45,7 +45,7 @@ select option::selection{
     color: var(--whitebg);
     text-align: center;
     overflow: hidden;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico', cursive; /*! Definindo a fonte do Texto dentro do square*/
     position: relative;
 }
 .square:hover{
@@ -66,15 +66,19 @@ select option::selection{
     right: 0;
     bottom: 0;
 }
- .material-icons{
-    font-size: 5rem;
+.material-icons{
+    font-size: 8rem;
 }
 #companyIcon{
     font-size: 3rem;
+    margin-top: 1.2rem;
 
 }
-.span-num{
+.span-num:nth-child(1){
     font-size: 2rem;
+}
+.linkLead{
+    font-size: 1.5rem;
 }
 .cadLink{
     font-size: 1rem;
@@ -91,7 +95,15 @@ select option::selection{
     background: var(--grey);
 }
 
-div .dataTables_filter input {
+.dataTables_wrapper .dataTables_filter input {
     width: 30rem;
     border-radius: 2rem;
+    border: 0.2rem solid var(--black);
+  }
+  .dataTables_wrapper .dataTables_filter input:focus {
+    outline: 0.1rem solid var(--grey);
+  }
+
+  .largerSpace{
+    padding: 1rem;
   }
