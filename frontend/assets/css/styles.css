@@ -107,3 +107,8 @@ select option::selection{
   .largerSpace{
     padding: 1rem;
   }
+
+  .formCustom{
+    width: 80%;
+    background-color: red;
+  }
