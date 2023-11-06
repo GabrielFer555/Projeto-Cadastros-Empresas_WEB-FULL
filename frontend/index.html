@@ -396,19 +396,23 @@
 
                     $("#saveBtn").on("click", function () {
                         const emptyFields = document.getElementsByClassName("modalInput");
-                        for (let i = 0; i < emptyFields.length; i++) {
-                            console.log(emptyFields[i].value)
-                            if (!validaSeInvisivel(emptyFields[i]) || emptyFields[i].value.trim() == ""){
-                                mensagem("Campos obrigatórios vazios, favor verificar!", 2, 1900)
-                                emptyFields[i].focus();
-                                break;
-                            } else {
-                                mensagem("Sucesso!", 1, 1900)
-                                $("#modalCadastro").modal("hide");
-                                break;
+                        let hasEmptyField = false;
+
+                        for (input of emptyFields) {
+                            console.log(input.value);
+                            if (!validaSeInvisivel(input) || input.value.trim() === "") {
+                                mensagem("Campos obrigatórios vazios, favor verificar!", 2, 1900);
+                                input.focus();
+                                hasEmptyField = true;
                             }
                         }
-                    })
+
+                        if (!hasEmptyField) {
+                            mensagem("Sucesso!", 1, 1900);
+                            $("#modalCadastro").modal("hide");
+                        }
+                    });
+
                 })
             })
 
