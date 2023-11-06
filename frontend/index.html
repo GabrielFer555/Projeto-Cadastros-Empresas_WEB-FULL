@@ -380,33 +380,39 @@
                     $(".telephone").mask('(00) 0000-0000');
                     $(".celphone").mask('(00) 00000-0000');
                     $("#docInsertion").mask('000.000.000-00');
+                    $("#rgCase").mask('0.000.000');
                     $(".radio").on("change", function () {
                         toggleCheck()
                     })
 
                     $("#modalCadastro").on("hide.bs.modal", function () {
-                        $(".form-control").val("");
                         if ($("#juridicas").is(":checked")) {
                             $("#juridicas").removeAttr("checked")
                             $("#fisicas").prop("checked", true);
                             toggleCheck()
                         }
+                        $(".form-control").val("");
                     })
 
                     $("#saveBtn").on("click", function () {
                         const emptyFields = document.getElementsByClassName("modalInput");
-                        for (let i = 0; i < emptyFields.length; i++) {
-                            if (!validaSeInvisivel(emptyFields[i]) && (!emptyFields[i].value || emptyFields[i].value.trim() == "")) {
-                                mensagem("Campos obrigatórios vazios, favor verificar!", 2, 1900)
-                                emptyFields[i].focus();
-                                break;
-                            } else {
-                                mensagem("Sucesso!", 1, 1900)
-                                $("#modalCadastro").modal("hide");
-                                break;
+                        let hasEmptyField = false;
+
+                        for (input of emptyFields) {
+                            console.log(input.value);
+                            if (!validaSeInvisivel(input) || input.value.trim() === "") {
+                                mensagem("Campos obrigatórios vazios, favor verificar!", 2, 1900);
+                                input.focus();
+                                hasEmptyField = true;
                             }
                         }
-                    })
+
+                        if (!hasEmptyField) {
+                            mensagem("Sucesso!", 1, 1900);
+                            $("#modalCadastro").modal("hide");
+                        }
+                    });
+
                 })
             })
 
