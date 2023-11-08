@@ -11,6 +11,7 @@ const atualizaDadosFornecedor= () => { /* Atualiza número do HUD do fornecedor*
 const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa*/
     const response = await fetch("http://localhost:5143/v1/Company");
     const dados = await response.json();
+    console.log(dados) //testes
     const tabela = document.getElementsByTagName("tbody")[0];
     let data='';
     for(ct of dados) {
@@ -30,11 +31,12 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                         ${ct.uf}
                     </th>
                     <th>
-                    <a href="editCompany.html?id='${ct.empresaId}'">Editar</a>
+                    <a href="editCompany.html?id=${ct.empresaId}">Editar</a>
                     </th>
 
                 </tr>
-    `}
+    `;
+}
     $("#tableRegisters").DataTable({
         "search": {
             "smart": true,
@@ -55,7 +57,7 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
             {
                 "data": null,
                 "render": function (data, type, row) {
-                    return '<a href="editCompany.html?id=' + data + '">Editar</a>';
+                    return `<a href="editCompany.html?id=${row.empresaId}">Editar</a>`;
                 }}
                 
 
