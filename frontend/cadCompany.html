@@ -74,96 +74,26 @@
             <thead class="thead table-dark">
                 <tr>
                     <th scope="col">
-                        Cod. Fornecedor
+                        Cod. Empresa
                     </th>
                     <th scope="col">
                         Empresa
                     </th>
                     <th scope="col">
-                        Nome
+                        CNPJ
                     </th>
                     <th scope="col">
-                        CPF/CNPJ
+                        UF
                     </th>
-                    <th scope="col">
-                        Data Cad.
-                    </th>
-                    <th scope="col">
-                        Fone
-                    </th>
-                    <th scope="col">
-                        Empresa Vinculada
-                    </th>
-                    <th scope="col">
+                    <th>
                         #
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <!---- Conteudo Gerado via JavaScript ---->
-                <tr class="col columns">
-                    <th>
-                        1
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        <button class="trashcan">
-                            <span class="material-symbols-outlined">
-                                delete_forever
-                            </span>
-                        </button>
-                    </th>
-                </tr>
-                <tr class="col columns">
-                    <th>
-                        2
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        <button class="trashcan">
-                            <span class="material-symbols-outlined">
-                                delete_forever
-                            </span>
-                        </button>
-                    </th>
-                </tr>
             </tbody>
         </table>
-        <p class="nullTable">Sem dados para Mostrar</p>
     </section>
         <script src="./assets/js/script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -195,20 +125,6 @@
                         $.LoadingOverlay("hide");
                     },1000)
                 })
-
-                $("#tableRegisters").DataTable({
-                    "search": {
-                        "smart": true,
-                        "regex": true
-                    },
-                    searchDelay: 350,
-                    language: {
-                        "searchPlaceholder": "Pesquise por CNPJ, Nome da Empresa, etc...",
-                        "search": "Search:",
-                        "info": "Exibindo _START_ até _END_ de _TOTAL_ Linhas",
-
-                    }
-                });
             });
         </script>
 </body>

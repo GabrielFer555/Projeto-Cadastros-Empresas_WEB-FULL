@@ -10,8 +10,7 @@ namespace backend.ModelViews.Classes
         public string Name { get ; set; }
         public string Document { get; set; }
         public string Uf { get; set; }
-        public object EmpresaId { get; internal set; }
-
+        
         public ModelEmpresaHttp (string name, string document, string Uf){
             this.Name = name;
             this.Document = document;

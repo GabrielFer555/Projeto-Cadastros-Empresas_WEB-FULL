@@ -9,12 +9,13 @@ using backend.ModelViews.Classes;
 using backend.UpdateModelViews;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace backend.Controllers
 {
     [ApiController]
     [Route("v1")]
-    public class EmpresaController : Controller
+    public class EmpresaController : ControllerBase
     {
         [HttpGet]
         [Route("Company")]
@@ -57,7 +58,7 @@ namespace backend.Controllers
             {
                 await dbContext.empresa_cad.AddAsync(Empresa);
                 await dbContext.SaveChangesAsync();
-                return Created($"api/v1/Company/{empresa.EmpresaId}", Empresa);
+                return Created($"api/v1/Company/{Empresa.EmpresaId}", Empresa);
 
             }
             catch (Exception)
@@ -90,5 +91,21 @@ namespace backend.Controllers
             }
 
         }
+        [HttpDelete]
+        [Route("DeleteCompany/{id}")]
+    public async Task<IActionResult> Delete([FromServices] AppDbContext dbContext, [FromRoute] int id ){
+        var empresaADeletar = await dbContext.empresa_cad.FirstOrDefaultAsync(x => x.EmpresaId == id);
+        if(empresaADeletar == null){
+            return NotFound();
+        }
+        try{
+            dbContext.Remove(empresaADeletar);
+            await dbContext.SaveChangesAsync();
+            return Ok("Removido com Sucesso");
+        }catch (Exception e){
+            return BadRequest(e.GetBaseException());
+        }
+    }
+    
     }
 }
