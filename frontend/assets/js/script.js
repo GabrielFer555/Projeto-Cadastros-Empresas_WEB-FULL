@@ -10,6 +10,7 @@ const atualizaDadosFornecedor = () => { /* Atualiza número do HUD do fornecedor
     }
 }
 
+<<<<<<< Updated upstream
 const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa e faz Request pra rota de empresas*/
     try {
         const response = await fetch(`${url}/v1/Company`);
@@ -19,6 +20,17 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
         let data = '';
         for (ct of dados) {
             data += `
+=======
+const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa*/
+try{
+    const response = await fetch("http://localhost:5143/v1/Company");
+    const dados = await response.json();
+    console.log(dados) //testes
+    const tabela = document.getElementsByTagName("tbody")[0];
+    let data='';
+    for(ct of dados) {
+        data += `
+>>>>>>> Stashed changes
         <tr class="col columns">
         <a href="companyCadScreen.html?id=${ct.empresaId}">
                     <th>
@@ -50,6 +62,7 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                 "search": "Search:",
                 "info": "Exibindo _START_ até _END_ de _TOTAL_ Linhas",
 
+<<<<<<< Updated upstream
             },
             "data": dados,
             "columns": [
@@ -67,7 +80,29 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
         mensagem("Ocorreu um erro! Recarregue a página!", 2, 2000)
     }
 
+=======
+        },
+        "data": dados,
+        "columns":[
+            {"data": "empresaId"},
+            {"data": "name"},
+            {"data":"document"},
+            {"data": "uf"},
+                
+
+        ]
+    })
+    tabela.innerHTML = data;
+    const fornCadastradas = document.getElementsByClassName("span-num")[0];
+    const colunas = document.getElementsByClassName("columns");
+    fornCadastradas.textContent = colunas.length.toString();
+}catch(error){
+    mensagem("Ocorreu um erro! Recarregue a página!",2);
+>>>>>>> Stashed changes
 }
+}
+
+   
 
 const validaSeInvisivel = (elementoHTML) => { /*Valida se algum campo está invisivel no Input */
     const validacao = elementoHTML.classList.contains("noValidation") ? true : false;
