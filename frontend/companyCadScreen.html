@@ -19,6 +19,7 @@
     <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-mnc-company-1956292-1650455.png"
         type="image/x-icon">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -41,77 +42,120 @@
     </nav>
     <main>
 
-      <section class="container-fluid d-flex align-items-lg-center justify-content-center">
-        <div class="col-lg">
-            <form action="" method="post" class="w-75 p-5">
-                <div class="row">
-                    <div class="mb-3 col-md-8">
-                      <label for="" class="form-label">Nome da Empresa:</label>
-                      <input type="text" name="" id="" class="form-control" placeholder="Insira o nome da Empresa" aria-describedby="empresaNome">
-                      <small id="helpId" class="text-muted">Nome da Empresa</small>
+        <section class="container-fluid d-flex align-items-lg-center justify-content-center">
+            <div class="col-lg">
+                <form action="" method="post" class="w-75 p-5">
+                    <div class="row">
+                        <div class="mb-3 col-md-8">
+                            <label for="nomeEmp" class="form-label">Nome da Empresa:</label>
+                            <input type="text" name="nomeEmp" id="nomeEmp" class="form-control" placeholder="Insira o nome da Empresa"
+                                aria-describedby="empresaNome">
+                            <small id="helpId" class="text-muted">Nome da Empresa</small>
+                        </div>
                     </div>
-                </div>
-                <div class="row d-flex justify-content-between align-items-start" >
-                    <div class="mb-3 col-md-6">
-                        <label for="" class="form-label">CPNJ</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="000.000.000/0000-00">
-                        <small class="text-muted">Insira o CPNJ da Empresa</small>
+                    <div class="row d-flex justify-content-between align-items-start">
+                        <div class="mb-3 col-md-6">
+                            <label for="cnpjEmp" class="form-label">CPNJ</label>
+                            <input type="text" id="cnpjEmp" class="form-control"
+                                placeholder="000.000.000/0000-00">
+                            <small class="text-muted">Insira o CPNJ da Empresa</small>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="estadosVal" class="form-label">UF</label>
+                            <select name="estadosVal" id="estadosVal" class="form-control">
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC" selected>Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                            <small class="text-muted">Insira a UF da Empresa</small>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label for="" class="form-label">UF</label>
-                        <select name="" id="" class="form-control">
-                            <option value="AC">Acre</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="DF">Distrito Federal</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="SC" selected>Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="TO">Tocantins</option>
-                        </select>
-                        <small class="text-muted">Insira a UF da Empresa</small>
-                    </div>
-                </div>
-            </form>
+                </form>
             </div>
 
-            
-        </section>  
-      <section class="d-flex flex-row justify-content-end position-fixed w-100 p-5">
-            <button class="btn btn-success m-3">Salvar</button>
+
+        </section>
+        <section class="d-flex flex-row justify-content-end position-fixed w-100 p-5">
+            <button class="btn btn-success m-3" id="salvar-Btn">Salvar</button>
             <button class="btn btn-danger m-3">Cancelar</button>
-      </section>
+        </section>
     </main>
 
     <script src="./assets/js/script.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-        <script src="./node_modules/notyf/notyf.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="./node_modules/notyf/notyf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js
         "></script>
+    <script>
+        $(document).ready(function () {
+            $("#cnpjEmp").mask("000.000.000/0000-00")
+            const campos = document.getElementsByClassName("form-control");
+            $("#salvar-Btn").on("click", function () {
+                 for(let campo of campos) {
+                    if(campo.value == null || campo.value.trim() == ""){
+                        campo.focus();
+                        mensagem("Campos importantes vazios, verifique!",2)
+                    }
+                    else{
+                        salvarEmpresa();
+                    }
+                }
+            })
+            const salvarEmpresa = async () =>{
+                const nomeEmp = $("#nomeEmp").val();
+                const document = $("#cnpjEmp").val();
+                const uf = $("#estadosVal").val();
+                try{
+                    const response = await fetch("http://localhost:5143/v1/Company",{
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            name:nomeEmp,
+                            document:document,
+                            uf: uf
+                        })
+                    })
+                    const dados = await response.json();
+                if(response.status == 201){
+                    mensagem("Sucesso")
+                    carregarPara("cadCompany.html",1000)
+                }
+                }catch(err){
+
+                }
+            }
+        })
+    </script>
 </body>
+
 </html>

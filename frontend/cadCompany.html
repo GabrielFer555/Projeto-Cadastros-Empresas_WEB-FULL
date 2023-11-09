@@ -56,7 +56,7 @@
 
             </div>
         </div>
-        <div class="square">
+        <div class="square" id="leadToCadCompany">
             <span class="span-num" id="">0</span>
                 <p class="superText">Empresas cadastradas</p>
                 <span class="cadLink">Cadastre aqui</span>
@@ -109,6 +109,8 @@
         <script>
             $(document).ready(function () {
                 atualizaDadosEmpresa();
+                
+
 
                 $("#leadToForn").on("click", function(){
                     $.LoadingOverlay("show", {
@@ -126,6 +128,9 @@
                     },1000)
                 })
             });
+            $("#leadToCadCompany").on("click", async function(){
+                carregarPara("companyCadScreen.html");
+            })
         </script>
 </body>
 

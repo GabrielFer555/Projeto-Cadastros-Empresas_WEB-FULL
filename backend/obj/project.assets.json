@@ -1951,19 +1951,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gabriel.fernandes\\.nuget\\packages\\": {}
+    "C:\\Users\\Pichau\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabriel.fernandes\\Documents\\GitHub\\Projeto-Cadastros-Empresas-\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\Pichau\\Documents\\GitHub\\Projeto-Cadastros-Empresas\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\gabriel.fernandes\\Documents\\GitHub\\Projeto-Cadastros-Empresas-\\backend\\backend.csproj",
-      "packagesPath": "C:\\Users\\gabriel.fernandes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabriel.fernandes\\Documents\\GitHub\\Projeto-Cadastros-Empresas-\\backend\\obj\\",
+      "projectPath": "C:\\Users\\Pichau\\Documents\\GitHub\\Projeto-Cadastros-Empresas\\backend\\backend.csproj",
+      "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Pichau\\Documents\\GitHub\\Projeto-Cadastros-Empresas\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gabriel.fernandes\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
