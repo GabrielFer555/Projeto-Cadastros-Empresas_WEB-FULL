@@ -31,17 +31,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link link-primary" aria-current="page" href="#">Home</a>
+                        <a class="nav-link link-primary" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">GitHub</a>
+                        <a class="nav-link" href="https://github.com/GabrielFer555/Projeto-Cadastros-Empresas_WEB-FULL">GitHub</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <main>
-
         <section class="container-fluid d-flex align-items-lg-center justify-content-center">
             <div class="col-lg">
                 <form action="" method="post" class="w-75 p-5">
@@ -49,15 +48,15 @@
                         <div class="mb-3 col-md-8">
                             <label for="nomeEmp" class="form-label">Nome da Empresa:</label>
                             <input type="text" name="nomeEmp" id="nomeEmp" class="form-control" placeholder="Insira o nome da Empresa"
-                                aria-describedby="empresaNome">
+                                aria-describedby="empresaNome" autocomplete="off">
                             <small id="helpId" class="text-muted">Nome da Empresa</small>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-between align-items-start">
                         <div class="mb-3 col-md-6">
-                            <label for="cnpjEmp" class="form-label">CPNJ</label>
+                            <label for="cnpjEmp" class="form-label" aria-autocomplete="none">CPNJ</label>
                             <input type="text" id="cnpjEmp" class="form-control"
-                                placeholder="000.000.000/0000-00">
+                                placeholder="000.000.000/0000-00" autocomplete="off">
                             <small class="text-muted">Insira o CPNJ da Empresa</small>
                         </div>
                         <div class="col-sm-4">
@@ -101,7 +100,7 @@
         </section>
         <section class="d-flex flex-row justify-content-end position-fixed w-100 p-5">
             <button class="btn btn-success m-3" id="salvar-Btn">Salvar</button>
-            <button class="btn btn-danger m-3">Cancelar</button>
+            <button class="btn btn-danger m-3" id="cancelar-Btn">Cancelar</button>
         </section>
     </main>
 
@@ -119,18 +118,25 @@
     <script>
         $(document).ready(function () {
             $("#cnpjEmp").mask("000.000.000/0000-00")
-            const campos = document.getElementsByClassName("form-control");
             $("#salvar-Btn").on("click", function () {
-                 for(let campo of campos) {
-                    if(campo.value == null || campo.value.trim() == ""){
-                        campo.focus();
-                        mensagem("Campos importantes vazios, verifique!",2)
-                    }
-                    else{
-                        salvarEmpresa();
-                    }
-                }
-            })
+                 if($("#nomeEmp").val() == null ||$("#nomeEmp").val() == ""){
+                    $("#nomeEmp").focus();
+                    return mensagem("Campo nome de Empresa vazio, verifique!",2);
+                 }
+                 if($("#cnpjEmp").val() == null ||$("#cnpjEmp").val().length <= 18 ){
+                    $("#cnpjEmp").focus();
+                    return mensagem("Campo nome de CNPJ incorreto, verifique!",2);
+                 }
+                 else{
+                    salvarEmpresa();
+                 }
+                })
+
+                $("#cancelar-Btn").on("click", function () {
+                    carregarPara("cadCompany.html");
+
+                })
+          
             const salvarEmpresa = async () =>{
                 const nomeEmp = $("#nomeEmp").val();
                 const document = $("#cnpjEmp").val();
@@ -147,10 +153,11 @@
                     })
                     const dados = await response.json();
                 if(response.status == 201){
+                    await carregarPara("cadCompany.html",1000)
                     mensagem("Sucesso")
-                    carregarPara("cadCompany.html",1000)
                 }
                 }catch(err){
+                    mensagem("Algo deu errado!", 2)
 
                 }
             }

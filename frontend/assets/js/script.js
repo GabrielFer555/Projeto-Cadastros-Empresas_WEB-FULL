@@ -34,11 +34,11 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                         ${ct.uf}
                     </th>
                     <th>
-                    <a href="editCompany.html?id=${ct.empresaId}">Editar</a>
+                     <a class="editLink" href="editCompany.html?id=${ct.empresaId}">Editar</a>
                     </th>
 
                 </tr>
-    `;
+    `;       
         }
         $("#tableRegisters").DataTable({
             "search": {
@@ -49,7 +49,7 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                 "searchPlaceholder": "Pesquise por CNPJ, Nome da Empresa, etc...",
                 "search": "Search:",
                 "info": "Exibindo _START_ até _END_ de _TOTAL_ Linhas",
-
+    
             },
             "data": dados,
             "columns": [
@@ -57,6 +57,11 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                 { "data": "name" },
                 { "data": "document" },
                 { "data": "uf" },
+                { "data": "empresaId",
+                "render": function(data,type) {
+                    return `<a class="editLink" href="editCompany.html?id=${data}">Editar</a>` 
+            }}
+    
             ]
         })
         tabela.innerHTML = data;
