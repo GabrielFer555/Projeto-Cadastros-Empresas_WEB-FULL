@@ -118,4 +118,15 @@ select option::selection{
 .editLink:hover{
     color: #05c46b;
     text-decoration: underline;
+    cursor: pointer;
+}
+.btn-rollback{
+    margin: 2rem;
+    width: 5rem;
+    border: 0.05rem solid #8e44ad;
+    color: #8e44ad;
+}
+.btn-rollback:hover{
+    background: #8e44ad;
+    color: #fff;
 }

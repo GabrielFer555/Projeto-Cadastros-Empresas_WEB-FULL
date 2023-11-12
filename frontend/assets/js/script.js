@@ -34,7 +34,7 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                         ${ct.uf}
                     </th>
                     <th>
-                     <a class="editLink" href="editCompany.html?id=${ct.empresaId}">Editar</a>
+                     <a class="editLink" onclick="carregarPara('editCompany.html?id=${ct.empresaId}')">Editar</a>
                     </th>
 
                 </tr>
@@ -59,7 +59,7 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
                 { "data": "uf" },
                 { "data": "empresaId",
                 "render": function(data,type) {
-                    return `<a class="editLink" href="editCompany.html?id=${data}">Editar</a>` 
+                    return `<a class="editLink" onclick="carregarPara('editCompany.html?id=${data}')">Editar</a>` 
             }}
     
             ]
@@ -73,6 +73,56 @@ const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa
     }
 
 }
+
+const empresaDados = async () =>{
+    try{
+        const params = new URLSearchParams(document.location.search);
+        const id = params.get("id");
+        const response = await fetch(`${url}/v1/GetCompanyById/${id}`);
+        const dados = await response.json();
+        console.log(dados)
+        $("#codEmp").val(dados.empresaId);
+        $("#empresaNome").val(dados.name);
+        $("#cnpjEmp").val(dados.document);
+        $("#estadosVal").val(dados.uf);
+        
+    }catch(err){
+        mensagem(err,2)
+    }
+    
+}
+const editEmpresa = async (name, uf) =>{
+    try{
+        const params = new URLSearchParams(document.location.search);
+        const id = params.get("id");
+        const response = await fetch(`${url}/v1/UpdateCompany/${id}`,{
+            method:"PUT",
+            headers:{"Content-type":"application/json charset=UTF-8"},
+            body: JSON.stringify({
+                name:name,
+                uf: uf
+            })
+        });
+        return response.status;
+    }catch(err){
+        mensagem(err,2)
+    }
+}
+
+const deletarEmpresa = async (name, uf) =>{
+    try{
+        const params = new URLSearchParams(document.location.search);
+        const id = params.get("id");
+        const response = await fetch(`${url}/v1/DeleteCompany/${id}`,{
+            method:'DELETE',
+            headers:{"Content-type":"application/json charset=UTF-8"}
+        })
+    }catch(err){
+        mensagem("Algo deu errado",2)
+    }
+    
+}
+
 
 
    
