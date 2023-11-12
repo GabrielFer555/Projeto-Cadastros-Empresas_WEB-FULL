@@ -67,7 +67,7 @@ namespace backend.Controllers
             }
         }
         [HttpPut]
-        [Route("UpdateCompany/{id}")]
+        [Route("UpdateCompany/{EmpresaId}")]
         public async Task<IActionResult> PutAsync([FromServices] AppDbContext dbContext, [FromRoute] int EmpresaId, [FromBody] EmpresaUpdateModelView empresaUpdate)
         {
             var empresa = await dbContext.empresa_cad.FirstOrDefaultAsync(x => x.EmpresaId == EmpresaId);
