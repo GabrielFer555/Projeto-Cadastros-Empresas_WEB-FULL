@@ -114,6 +114,7 @@ select option::selection{
     text-decoration: none;
     font-family: 'Fredericka',sans-serif;
     transition: all 0.25s;
+    font-display: swap;
 }
 .editLink:hover{
     color: #05c46b;

@@ -87,7 +87,7 @@ namespace backend.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetBaseException());
+                return BadRequest("Erro Interno!");
             }
 
         }
@@ -103,7 +103,7 @@ namespace backend.Controllers
             await dbContext.SaveChangesAsync();
             return Ok("Removido com Sucesso");
         }catch (Exception e){
-            return BadRequest(e.GetBaseException());
+            return BadRequest("Erro Interno!");
         }
     }
     
