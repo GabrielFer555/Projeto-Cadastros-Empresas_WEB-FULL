@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.min.css">
     <link rel="stylesheet" href="./node_modules/notyf/notyf.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet"
@@ -76,9 +76,6 @@
                         Cod. Fornecedor
                     </th>
                     <th scope="col">
-                        Empresa
-                    </th>
-                    <th scope="col">
                         Nome
                     </th>
                     <th scope="col">
@@ -88,81 +85,14 @@
                         Data Cad.
                     </th>
                     <th scope="col">
-                        Fone
-                    </th>
-                    <th scope="col">
-                        Empresa Vinculada
-                    </th>
-                    <th scope="col">
                         #
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <!---- Conteudo Gerado via JavaScript ---->
-                <tr class="col columns">
-                    <th>
-                        1
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        <button class="trashcan">
-                            <span class="material-symbols-outlined">
-                                delete_forever
-                            </span>
-                        </button>
-                    </th>
-                </tr>
-                <tr class="col columns">
-                    <th>
-                        2
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        Teste
-                    </th>
-                    <th>
-                        <button class="trashcan">
-                            <span class="material-symbols-outlined">
-                                delete_forever
-                            </span>
-                        </button>
-                    </th>
-                </tr>
             </tbody>
         </table>
-        <p class="nullTable">Sem dados para Mostrar</p>
     </section>
 
     <div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="modal-Cadastro"
@@ -184,10 +114,11 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 ms-1">
-                                <input type="radio" id="fisicas" checked class="form-checkbox ms-2 radio"
+                                <input type="radio" id="fisicas" checked class="form-checkbox ms-2 radio" value="f"
                                     name="cpfcpnj">
                                 <label for="fisicas" class="form-label">Pessoa Fisica</label>
-                                <input type="radio" id="juridicas" class="form-checkbox ms-2 radio" name="cpfcpnj">
+                                <input type="radio" id="juridicas" class="form-checkbox ms-2 radio" value="p"
+                                    name="cpfcpnj">
                                 <label for="juridicas" class="form-label">Pessoa Jurídica</label>
                             </div>
                         </div>
@@ -219,7 +150,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="companiesSelect" class="form-label">Empresa Vinc.:</label>
-                                    <select name="companiesSelect modalInput" id="companiesSelect" class="form-control">
+                                    <select name="companiesSelect modalInput" id="companiesSelect" class="form-control companies">
                                         <option value="one" selected>Selecione uma Empresa</option>
                                         <!---- Opções retornadas da API-->
                                     </select>
@@ -267,7 +198,7 @@
                                     <div class="mb-3 row">
                                         <div class="col-8">
                                             <input type="text" class="form-control telephone modalInput"
-                                                name="inputName" id="inputTel1" placeholder="Telefone 1 (Required)">
+                                                name="inputTel1" id="inputTel1" placeholder="Telefone 1 (Required)">
                                         </div>
                                     </div>
                                     <fieldset class="mb-3 row">
@@ -307,24 +238,6 @@
         <script>
             $(document).ready(function () {
                 atualizaDadosFornecedor();
-                const mensagem = (msg, type = 1, duration = 1000, x = "left", y = "bottom") => {
-                    console.log($(".form-control"))
-                    const i = new Notyf({
-                        duration: duration,
-                        position: {
-                            x: x,
-                            y: y
-                        },
-                    });
-                    switch (type) {
-                        case 1:
-                            i.success(msg);
-                            break;
-                        case 2:
-                            i.error(msg);
-                            break;
-                    }
-                }
                 const toggleCheck = () => {
                     if ($("#juridicas").is(":checked")) {
                         $("#cpfLabel").text("CPNJ");
@@ -332,8 +245,6 @@
                         $("#docInsertion").attr("placeholder", "Insira o CPNJ do Fornecedor..  (Required)");
                         $("#docInsertion").mask('00.000.000/0000-00');
                         $(".caseFisica").addClass("d-none");
-                        $("#bornDate").addClass("noValidation");
-                        $("#rgCase").addClass("noValidation");
 
                     } else {
                         $("#cpfLabel").text("CPF");
@@ -342,8 +253,6 @@
                         $("#docInsertion").mask('000.000.000-00');
                         $("#rgCase").mask('0.000.000');
                         let can = $(".caseFisica").hasClass("d-none") ? $(".caseFisica").removeClass("d-none") : null;
-                        $("#bornDate").removeClass("noValidation");
-                        $("#rgCase").removeClass("noValidation");
                     }
                 }
 
@@ -394,23 +303,40 @@
                         $(".form-control").val("");
                     })
 
-                    $("#saveBtn").on("click", function () {
-                        const emptyFields = document.getElementsByClassName("modalInput");
-                        let hasEmptyField = false;
-
-                        for (input of emptyFields) {
-                            console.log(input.value);
-                            if (!validaSeInvisivel(input) || input.value.trim() === "") {
-                                mensagem("Campos obrigatórios vazios, favor verificar!", 2, 1900);
-                                input.focus();
-                                hasEmptyField = true;
+                    $("#saveBtn").on("click", async function () {
+                        try {
+                            if ($("#nomeForn").val() == "") {
+                                $("#nomeForn").focus();
+                                throw "Nome fornecedor está vazio, verifique!";
                             }
+                            else if ($("#fisicas").is(":checked")) {
+                                if ($("#docInsertion").val().length < 14) {
+                                    $("#docInsertion").focus();
+                                    throw "CPF inserido é inválido!";
+                                }
+                                else if ($("#bornDate").val().length < 10) {
+                                    $("#bornDate").focus();
+                                    throw "Data de Nascimento inserido é inválida!";
+                                }
+                                else if ($("#rgCase").val().length < 9) {
+                                    $("#rgCase").focus();
+                                    throw "RG inserido é inválido!";
+                                }
+                            }
+                            else if($("#juridicas").is(":checked")) {
+                                if ($("#docInsertion").val().length < 19) {
+                                    $("#docInsertion").focus();
+                                    throw "CNPJ inserido é inválido!";
+                                }
+                            }
+                            if($("#inputTel1").val().length < 11) {
+                                $("#inputTel1").focus();
+                                throw "Telefone Inválido! Verifique!";
+                            }
+                        }catch (err) {
+                            mensagem(err, 2);
                         }
-
-                        if (!hasEmptyField) {
-                            mensagem("Sucesso!", 1, 1900);
-                            $("#modalCadastro").modal("hide");
-                        }
+                        
                     });
 
                 })
