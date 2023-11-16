@@ -240,6 +240,8 @@
                 atualizaDadosFornecedor();
                 const toggleCheck = () => {
                     if ($("#juridicas").is(":checked")) {
+                        $("#rgCase").val("");
+                        $("#bornDate").val("");
                         $("#cpfLabel").text("CPNJ");
                         $("#docInsertion").focus();
                         $("#docInsertion").attr("placeholder", "Insira o CPNJ do Fornecedor..  (Required)");
@@ -324,7 +326,7 @@
                                 }
                             }
                             else if($("#juridicas").is(":checked")) {
-                                if ($("#docInsertion").val().length < 19) {
+                                if ($("#docInsertion").val().length < 18) {
                                     $("#docInsertion").focus();
                                     throw "CNPJ inserido é inválido!";
                                 }
@@ -332,6 +334,22 @@
                             if($("#inputTel1").val().length < 11) {
                                 $("#inputTel1").focus();
                                 throw "Telefone Inválido! Verifique!";
+                            }
+                            
+                            try{
+                                const response = await criarNovoForn();
+                                switch (response){
+                                    case 200:{
+                                        mensagem("Sucesso!");
+                                        window.location.reload();
+                                    }case 400:{
+                                        mensagem("Algo deu errado, verifique!",2);
+                                    }case 406:{
+                                        mensagem("Fornecedor pessoa física não pode ser vinculado com empresa do Paraná, verifique!",2);
+                                    }
+                                }
+                            }catch(error){
+                                mensagem(error, 2)
                             }
                         }catch (err) {
                             mensagem(err, 2);

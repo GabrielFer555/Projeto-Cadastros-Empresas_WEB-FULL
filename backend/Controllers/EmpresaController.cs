@@ -85,7 +85,7 @@ namespace backend.Controllers
                 return Ok(empresa);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest("Erro Interno!");
             }
@@ -102,7 +102,7 @@ namespace backend.Controllers
             dbContext.Remove(empresaADeletar);
             await dbContext.SaveChangesAsync();
             return Ok("Removido com Sucesso");
-        }catch (Exception e){
+        }catch (Exception){
             return BadRequest("Erro Interno!");
         }
     }

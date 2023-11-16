@@ -20,8 +20,8 @@ namespace backend.Classes
         [ForeignKey ("EmpresaId")]
         public int EmpresaVinculada{ get; set;}
          public String Telefone_1 { get; set; }
-         public String Telefone_2 { get; set; }
-        public String Celular { get; set; }
+         public String? Telefone_2{ get; set; }
+        public String? Celular { get; set; }
 
 
 

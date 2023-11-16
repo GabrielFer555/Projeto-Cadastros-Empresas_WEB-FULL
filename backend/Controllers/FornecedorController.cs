@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using backend.Classes;
 using backend.Data;
 using backend.ModelViews.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Logging;
 
 namespace backend.Controllers
 {
@@ -27,9 +20,9 @@ namespace backend.Controllers
                 var producers = await dbContext.fornecedors_cad.AsNoTracking().ToListAsync();
                 return Ok(producers);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return BadRequest(e);
+                return BadRequest("Erro ao conectar com o Banco!");
             }
 
         }
@@ -50,8 +43,11 @@ namespace backend.Controllers
         }
         [HttpPost]  //!Under Development
         [Route("Producer/Create")]
-        public async Task<IActionResult> Post([FromServices] AppDbContext dbContext, [FromBody] Fornecedor fornecedor)
+        public async Task<IActionResult> Post([FromServices] AppDbContext dbContext, [FromBody] ModelFornecedorHttp fornecedor)
         {
+            if(fornecedor.TipoFornecedor != "f" && fornecedor.TipoFornecedor !="j"){
+                return BadRequest("Tipo fornecedor precisa ser especificado.");
+            }
             if(fornecedor.EmpresaVinculada == 0){
                 return BadRequest("campo 'EmpresaVinculada' é invalida");
             }
@@ -67,39 +63,44 @@ namespace backend.Controllers
             }
             if (fornecedor.TipoFornecedor == "f")
             {
+                if(fornecedor.DataNasc == null){
+                    return BadRequest("Data de Nascimento não pode ser vazia");
+                }
                 String Uf = Emp.Uf;
                 DateOnly dataNasc = (DateOnly)fornecedor.DataNasc;
                 if (Uf == "PR" && calcularIdade(dataNasc) < 18)
                 {
-                    return BadRequest("Pessoa fisica menor de idade não pode ser Vinculado a empresa do Paraná");
+                    return StatusCode(406, "Pessoa fisica menor de idade não pode ser Vinculado a empresa do Paraná");
                 }
                 else
                 {
+                    var Fornecedor = new Fornecedor(fornecedor.Name, fornecedor.Document, fornecedor.EmpresaVinculada, fornecedor.Uf, fornecedor.TipoFornecedor, fornecedor.DataCad, fornecedor.Rg, fornecedor.DataNasc, fornecedor.Telefone_1, fornecedor?.Telefone_2, fornecedor?.Celular);
                     try{
-                        await dbContext.AddAsync(fornecedor);
+                        await dbContext.AddAsync(Fornecedor);
                         await dbContext.SaveChangesAsync();
-                        return Created($"v1/Producer/Find/{fornecedor.Id}",fornecedor);
-                    }catch(Exception e){
+                        return Created($"v1/Producer/Find/{Fornecedor.Id}",Fornecedor);
+                    }catch(Exception){
                         return BadRequest("Erro Interno!");
                     }
                 }
             }
             else
             {
-                if(fornecedor.Document.Length < 19){
+                if(fornecedor.Document.Length < 18){
                     return BadRequest("CNPJ invalido");
                 }
                 else{
                     try{
-                        await dbContext.AddAsync(fornecedor);
+                        var Fornecedor = new Fornecedor(fornecedor.Name, fornecedor.Document, fornecedor.EmpresaVinculada, fornecedor.Uf, fornecedor.TipoFornecedor, fornecedor.DataCad, fornecedor.Rg, fornecedor.DataNasc, fornecedor.Telefone_1, fornecedor?.Telefone_2, fornecedor?.Celular);
+                        await dbContext.AddAsync(Fornecedor);
                         await dbContext.SaveChangesAsync();
-                        return Created($"v1/Producer/Find/{fornecedor.Id}",fornecedor);
-                    }   catch(Exception e){
-                        return BadRequest(e.GetBaseException());
+                        return Created($"v1/Producer/Find/{Fornecedor.Id}",fornecedor);
+                    }   catch(Exception){
+                        return BadRequest("Erro ao Salvar Usuário!");
                     }
                 }
             }
-            }catch(Exception e){
+            }catch(Exception){
                 return BadRequest("Erro Interno!");
             }
             

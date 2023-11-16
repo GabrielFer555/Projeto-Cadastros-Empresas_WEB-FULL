@@ -43,6 +43,43 @@ const atualizaDadosFornecedor = async () => {
     }
     
 }
+const criarNovoForn = async () => {
+    const nome = $("#nomeForn").val();
+    const document = $("#docInsertion").val();
+    const rg = $("#rgCase").val() =="" ? null : $("#rgCase").val();
+    const bornDate = $("#bornDate").val() =="" ? null : $("#bornDate").val()
+    const uf =  $("#selectField").val();
+    const tipoFornecedor = $("#juridicas").is(":checked")? "j": "f";
+    const empresaVinculada =$("#companiesSelect").val();
+    const telefone_1 = $("#inputTel1").val();
+    const telefone_2 =  $("#inputTel2").val() == ""? null : $("#inputTel2").val();
+    const celular = $("#inputTel3").val() == ""? null : $("#inputTel3").val();
+
+    try{
+        const response = await fetch(`${url}/v1/Producer/Create`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json charset=utf-8",
+            },
+            body: JSON.stringify({
+                    name: nome,
+                    document: document,
+                    dataCad: new Date(),
+                    rg: rg,
+                    dataNasc: bornDate,
+                    uf: uf,
+                    tipoFornecedor: tipoFornecedor,
+                    empresaVinculada: empresaVinculada,
+                    telefone_1: telefone_1 ,
+                    telefone_2: telefone_2,
+                    celular: celular
+           })
+        });
+        return response.status;
+    }catch(err){
+        return err;
+    }
+}
 
 const atualizaDadosEmpresa = async () => { /* Atualiza número do HUD da empresa e faz Request pra rota de empresas*/
     try {
