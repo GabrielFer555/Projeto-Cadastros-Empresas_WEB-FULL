@@ -146,3 +146,5 @@ C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\
 C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\obj\Debug\net7.0\ref\backend.dll
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\Npgsql.dll
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\bin\Debug\net7.0\Npgsql.dll
+C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
