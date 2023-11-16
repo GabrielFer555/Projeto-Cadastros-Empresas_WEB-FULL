@@ -100,7 +100,8 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-appsettings.json
+backend/bin/Debug/net7.0/appsettings.json
+*.json
 
 # Chutzpah Test files
 _Chutzpah*
