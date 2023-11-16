@@ -21,7 +21,7 @@ namespace backend.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             if(!optionsBuilder.IsConfigured){
                 String connectionString = _configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseNpgsql(@"Server=dpg-cl9v105o7jlc73fjttp0-a.oregon-postgres.render.com;Port=5432;Database=mydb_hqtj;User Id=gabriel;Password=7bPmAKYo9BQguU6TPlGn3etazLlW6WCj;");
+                optionsBuilder.UseNpgsql(connectionString);
             }
             
         }
