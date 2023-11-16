@@ -1,5 +1,4 @@
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\appsettings.json
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\backend.exe
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\backend.deps.json
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\backend.runtimeconfig.json
