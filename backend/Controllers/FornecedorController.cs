@@ -109,6 +109,12 @@ namespace backend.Controllers
             }
             
         }
+        [HttpDelete]
+        [Route("Producer/Remove/{id}")]
+        public async Task<IActionResult> deleteProducer([FromServices] AppDbContext dbContext, [FromRoute] int id ){
+            var Emp = await dbContext.fornecedors_cad.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return Ok();
+        }
         [NonAction]
         public int calcularIdade(DateOnly data)
         {
