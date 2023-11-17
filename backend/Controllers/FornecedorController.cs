@@ -63,11 +63,15 @@ namespace backend.Controllers
             }
             if (fornecedor.TipoFornecedor == "f")
             {
+                
                 if(fornecedor.DataNasc == null){
-                    return BadRequest("Data de Nascimento não pode ser vazia");
+                    return StatusCode(422,"Data de Nascimento não pode ser vazia");
                 }
                 String Uf = Emp.Uf;
                 DateOnly dataNasc = (DateOnly)fornecedor.DataNasc;
+                if(dataNasc.Year < 1900 || dataNasc.Month > 12 || dataNasc > DateOnly.FromDateTime(DateTime.Now)){
+                    return StatusCode(422, "Data de Nascimento Invalída");
+                }
                 if (Uf == "PR" && calcularIdade(dataNasc) < 18)
                 {
                     return StatusCode(406, "Pessoa fisica menor de idade não pode ser Vinculado a empresa do Paraná");
