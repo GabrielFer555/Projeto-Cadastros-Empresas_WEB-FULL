@@ -1,5 +1,49 @@
 var url = "http://localhost:5143";
 
+const toggleCheck = (value) => {
+if(value == 1){
+    if ($("#juridicas").is(":checked")) {
+        $("#rgCase").val("");
+        $("#bornDate").val("");
+        $("#cpfLabel").text("CPNJ");
+        $("#docInsertion").focus();
+        $("#docInsertion").attr("placeholder", "Insira o CPNJ do Fornecedor..  (Required)");
+        $("#docInsertion").mask('00.000.000/0000-00');
+        $(".caseFisica").addClass("d-none");
+
+    } else {
+        $("#cpfLabel").text("CPF");
+        $("#docInsertion").focus();
+        $("#docInsertion").attr("placeholder", "Insira o CPF do Fornecedor..  (Required)");
+        $("#docInsertion").mask('000.000.000-00');
+        $("#rgCase").mask('0.000.000');
+        let can = $(".caseFisica").hasClass("d-none") ? $(".caseFisica").removeClass("d-none") : null;
+    }
+}else{
+    
+}
+    
+}
+
+const fornecedorEspecifico = async (id) => {
+    try {
+        $("#modalEdit").modal("show");
+        const response = await fetch(`${url}/v1/Producer/Find/${id}`);
+        switch (response.status) {
+            case 200: {
+                const data = await response.json();               
+                break;
+            }
+            case 404: {
+                throw "Fornecedor não encontrado"
+            }
+        }
+    } catch (err) {
+        mensagem(err, 2);
+    }
+
+}
+
 const atualizaDadosFornecedor = async () => {
     $.LoadingOverlay("show", {
         background: "rgba(0, 0, 0, 0.8)",
@@ -34,7 +78,7 @@ const atualizaDadosFornecedor = async () => {
                     ${dataformatada.toLocaleString()}
                 </th>
                 <th>
-                    <button class="btn">Editar</button>
+                    <button class="btn" onclick="fornecedorEspecifico(${ct.id})">Editar</button>
                 </th>
             </tr>
             
@@ -68,12 +112,13 @@ const atualizaDadosFornecedor = async () => {
                 },
                 { "data": "id",
                     "render":function(data, type){
-                        return `<button class="btn"> Editar </button>`;
+                        return `<button class="btn" onclick="fornecedorEspecifico(${data})"> Editar </button>`;
                     }
                 }
             ]
         });
         const selectCompany = document.getElementById("companiesSelect");
+        const selectEditCompany = document.getElementById("companiesSelectEdit");
         const responseOptions = await fetch(`${url}/v1/Company`);
         const options = await responseOptions.json();
         let optionsData = '';
@@ -81,6 +126,7 @@ const atualizaDadosFornecedor = async () => {
             optionsData += `<option value="${key.empresaId}">${key.name}</option>`
         }
         selectCompany.innerHTML = optionsData;
+        selectEditCompany.innerHTML = optionsData;
         $.LoadingOverlay("hide");
     } catch (ERR) {
         $.LoadingOverlay("hide");
@@ -212,4 +258,7 @@ const mensagem = (msg, type = 1, duration = 1000, x = "left", y = "bottom") => {
             i.error(msg);
             break;
     }
+
+
+
 }

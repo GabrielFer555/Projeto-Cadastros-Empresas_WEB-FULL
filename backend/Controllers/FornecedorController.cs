@@ -45,6 +45,13 @@ namespace backend.Controllers
         [Route("Producer/Create")]
         public async Task<IActionResult> Post([FromServices] AppDbContext dbContext, [FromBody] ModelFornecedorHttp fornecedor)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            if(fornecedor.Name == "" || fornecedor.Name == null){
+                return BadRequest("Nome tem que ser informado!");
+            }
             if(fornecedor.TipoFornecedor != "f" && fornecedor.TipoFornecedor !="j"){
                 return BadRequest("Tipo fornecedor precisa ser especificado.");
             }
@@ -57,12 +64,11 @@ namespace backend.Controllers
             {
                 return BadRequest("Empresa não existe");
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
             if (fornecedor.TipoFornecedor == "f")
             {
+                if(fornecedor.Document.Length < 14){
+                    return BadRequest("CPF Inválido");
+                }
                 
                 if(fornecedor.DataNasc == null){
                     return StatusCode(422,"Data de Nascimento não pode ser vazia");
@@ -112,8 +118,17 @@ namespace backend.Controllers
         [HttpDelete]
         [Route("Producer/Remove/{id}")]
         public async Task<IActionResult> deleteProducer([FromServices] AppDbContext dbContext, [FromRoute] int id ){
-            var Emp = await dbContext.fornecedors_cad.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
-            return Ok();
+            var Fornecedor = await dbContext.fornecedors_cad.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            if(Fornecedor == null){
+                return NotFound();
+            }
+            try{
+                dbContext.Remove(Fornecedor);
+                await dbContext.SaveChangesAsync();
+                return Ok();
+            }catch(Exception){
+                return StatusCode(500, "Something went wrong");
+            }
         }
         [NonAction]
         public int calcularIdade(DateOnly data)
