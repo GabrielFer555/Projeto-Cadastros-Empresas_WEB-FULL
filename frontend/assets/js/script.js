@@ -20,7 +20,23 @@ if(value == 1){
         let can = $(".caseFisica").hasClass("d-none") ? $(".caseFisica").removeClass("d-none") : null;
     }
 }else{
-    
+    if ($("#juridicasEdit").is(":checked")) {
+        $("#rgCaseEdit").val("");
+        $("#bornDateEdit").val("");
+        $("#cpfLabelEdit").text("CPNJ");
+        $("#docEdition").focus();
+        $("#docEdition").attr("placeholder", "Insira o CPNJ do Fornecedor..  (Required)");
+        $("#docEdition").mask('00.000.000/0000-00');
+        $(".caseFisica").addClass("d-none");
+
+    } else {
+        $("#cpfLabelEdit").text("CPF");
+        $("#docEdition").focus();
+        $("#docEdition").attr("placeholder", "Insira o CPF do Fornecedor..  (Required)");
+        $("#docEdition").mask('000.000.000-00');
+        $("#rgCaseEdit").mask('0.000.000');
+        let can = $(".caseFisica").hasClass("d-none") ? $(".caseFisica").removeClass("d-none") : null;
+    }
 }
     
 }
