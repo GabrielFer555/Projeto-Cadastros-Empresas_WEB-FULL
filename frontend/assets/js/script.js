@@ -168,7 +168,6 @@ const empresaDados = async () => {
         const id = params.get("id");
         const response = await fetch(`${url}/v1/GetCompanyById/${id}`);
         const dados = await response.json();
-        console.log(dados)
         $("#codEmp").val(dados.empresaId);
         $("#empresaNome").val(dados.name);
         $("#cnpjEmp").val(dados.document);
@@ -176,37 +175,6 @@ const empresaDados = async () => {
 
     } catch (err) {
         mensagem(err, 2)
-    }
-
-}
-const editEmpresa = async (name, uf) => {
-    try {
-        const params = new URLSearchParams(document.location.search);
-        const id = params.get("id");
-        const response = await fetch(`${url}/v1/UpdateCompany/${id}`, {
-            method: "PUT",
-            headers: { "Content-type": "application/json charset=UTF-8" },
-            body: JSON.stringify({
-                name: name,
-                uf: uf
-            })
-        });
-        return response.status;
-    } catch (err) {
-        mensagem(err, 2)
-    }
-}
-
-const deletarEmpresa = async (name, uf) => {
-    try {
-        const params = new URLSearchParams(document.location.search);
-        const id = params.get("id");
-        const response = await fetch(`${url}/v1/DeleteCompany/${id}`, {
-            method: 'DELETE',
-            headers: { "Content-type": "application/json charset=UTF-8" }
-        })
-    } catch (err) {
-        mensagem("Algo deu errado", 2)
     }
 
 }

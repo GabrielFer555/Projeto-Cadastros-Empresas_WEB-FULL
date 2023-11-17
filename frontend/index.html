@@ -238,6 +238,7 @@
         "></script>
         <script>
             $(document).ready(function () {
+                var url = "http://localhost:5143";
                 atualizaDadosFornecedor();
                 const toggleCheck = () => {
                     if ($("#juridicas").is(":checked")) {
@@ -370,15 +371,15 @@
                                             window.location.reload();
                                             break;
                                         } case 400: {
-                                            mensagem("Erro!", 2);
+                                            throw "Erro ao fazer o Envio dos dados";
                                             break;
                                         } case 406: {
-                                            mensagem("Fornecedor pessoa física não pode ser vinculado com empresa do Paraná, verifique!", 2);
+                                            throw "Fornecedor pessoa física não pode ser vinculado com empresa do Paraná, verifique!";
                                             break;
                                         }
                                         case 422: {
-                                            mensagem("Data de Nascimento Inválida!", 2);
                                             $("#bornDate").focus();
+                                            throw "Data de Nascimento Inválida!";
                                             break;
                                         }
                                     }
