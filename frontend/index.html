@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     <label for="companiesSelect" class="form-label">Empresa Vinc.:</label>
                                     <select name="companiesSelect modalInput" id="companiesSelect"
-                                        class="form-control companies">
+                                        class="form-select companies">
                                         <option value="one" selected>Selecione uma Empresa</option>
                                         <!---- Opções retornadas da API-->
                                     </select>
@@ -155,7 +155,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="selectField">UF:</label>
-                                    <select class="form-control" id="selectField">
+                                    <select class="form-select" id="selectField">
                                         <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
                                         <option value="AP">Amapá</option>
@@ -234,7 +234,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="codForn">Código Forn.</label>
-                                        <input type="text" class="form-control" placeholder="Cód. Fornecedor">
+                                        <input type="text" id="codForn" class="form-control disabled" placeholder="Cód. Fornecedor" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -282,7 +282,7 @@
                                     <div class="form-group">
                                         <label for="companiesSelectEdit" class="form-label">Empresa Vinc.:</label>
                                         <select name="companiesSelect modalInput" id="companiesSelectEdit"
-                                            class="form-control companies">
+                                            class="form-select companies">
                                             <option value="one" selected>Selecione uma Empresa</option>
                                             <!---- Opções retornadas da API-->
                                         </select>
@@ -290,8 +290,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="selectField">UF:</label>
-                                        <select class="form-control" id="selectField">
+                                        <label for="selectFieldEdit">UF:</label>
+                                        <select class="form-select" id="selectFieldEdit">
                                             <option value="AC">Acre</option>
                                             <option value="AL">Alagoas</option>
                                             <option value="AP">Amapá</option>
@@ -350,8 +350,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger">Excluir</button>
-                            <button type="button" class="btn btn-success" id="saveBtnEdit">Salvar</button>
+                            <button type="button" class="btn btn-danger" id="excludeBtn">Excluir</button>
+                            <button type="button" class="btn btn-success" id="saveBtnEdit" data-bs-target="confirmExcludeModal">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -392,6 +392,7 @@
                     })
                     $("#modalCadastro").on("show.bs.modal", function () {
                         $("#bornDate").mask('00/00/0000');
+                        $("#fisicas").prop("checked", true);
                         $(".telephone").mask('(00) 0000-0000');
                         $(".celphone").mask('(00) 00000-0000');
                         $("#docInsertion").mask('000.000.000-00');
@@ -506,7 +507,7 @@
                                         window.location.reload();
                                         break;
                                     } case 400: {
-                                        throw "Erro ao fazer o Envio dos dados";
+                                        throw "Erro ao fazer o Envio dos dados, verifique os dados informados!";
                                         break;
                                     } case 406: {
                                         throw "Fornecedor pessoa física não pode ser vinculado com empresa do Paraná, verifique!";
@@ -515,6 +516,9 @@
                                     case 422: {
                                         $("#bornDate").focus();
                                         throw "Data de Nascimento Inválida!";
+                                        break;
+                                    } default:{
+                                        throw "Algo deu errado!";
                                         break;
                                     }
                                 }
@@ -526,8 +530,36 @@
                         }
 
                     })
+                    $("#excludeBtn").on("click", async function(){
+                        carregamento("mostrar");
+                        try{
+                            const id = $("#codForn").val();
+                            const response = await fetch(`${url}/v1/Producer/Remove/${id}`,{
+                            method:"DELETE",
+                            headers: {"Content-Type":" application/json; charset=utf-8"}
+                        })
+                            switch(response.status){                                
+                                case 200:{
+                                    carregamento("esconder");
+                                    mensagem("Sucesso ao excluir!")
+                                    location.reload();
+                                    break;
+                                }
+                                case 404:{
+                                    carregamento("esconder");
+                                    throw("Erro ao excluir, recarregue a página!",2)
+                                }default:{
+                                    throw("Algo deu errado")
+                                }
+                            }
+                        }catch(err){
+                            mensagem(err,2);
+                        }
+                        
+                    })
 
                 })
+
 
             </script>
 </body>

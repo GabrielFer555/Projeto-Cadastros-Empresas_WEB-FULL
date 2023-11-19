@@ -19,6 +19,7 @@ namespace backend.Data
         public DbSet<Fornecedor> fornecedors_cad { get; set;}/*Representa a tabela de fornecedores*/
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            
             if(!optionsBuilder.IsConfigured){
                 String connectionString = _configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseNpgsql(connectionString);

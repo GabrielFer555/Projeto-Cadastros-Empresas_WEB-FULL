@@ -17,7 +17,6 @@ namespace backend.Classes
         public DateOnly? DataNasc { get; set;}
         public String Uf { get; set; }
         public String TipoFornecedor { get; set;}
-        [ForeignKey ("EmpresaId")]
         public int EmpresaVinculada{ get; set;}
          public String Telefone_1 { get; set; }
          public String? Telefone_2{ get; set; }

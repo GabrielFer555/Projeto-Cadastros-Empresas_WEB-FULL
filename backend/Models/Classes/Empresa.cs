@@ -6,6 +6,7 @@ namespace backend.Models.Classes
     public class Empresa : IEnterprise
     {
         [Key]
+        [ForeignKey("EmpresaVinculada")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmpresaId { get; set; }
         public string Name { get ; set; }

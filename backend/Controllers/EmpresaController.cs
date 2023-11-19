@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Models.Classes;
@@ -10,6 +13,7 @@ using backend.UpdateModelViews;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.VisualBasic;
 
 namespace backend.Controllers
 {
@@ -94,6 +98,10 @@ namespace backend.Controllers
         [HttpDelete]
         [Route("DeleteCompany/{id}")]
     public async Task<IActionResult> Delete([FromServices] AppDbContext dbContext, [FromRoute] int id ){
+        var empresaVinculada = await dbContext.fornecedors_cad.AsNoTracking().FirstOrDefaultAsync(x => x.EmpresaVinculada == id);
+        if(empresaVinculada != null){
+            return StatusCode(422, "Empresa vinculada com algum fornecedor, impossível excluir");
+        }
         var empresaADeletar = await dbContext.empresa_cad.FirstOrDefaultAsync(x => x.EmpresaId == id);
         if(empresaADeletar == null){
             return NotFound();
@@ -106,6 +114,5 @@ namespace backend.Controllers
             return BadRequest("Erro Interno!");
         }
     }
-    
-    }
+}
 }
