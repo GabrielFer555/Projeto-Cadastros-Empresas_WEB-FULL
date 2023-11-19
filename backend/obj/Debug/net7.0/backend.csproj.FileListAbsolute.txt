@@ -148,3 +148,8 @@ C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\ne
 C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\bin\Debug\net7.0\Npgsql.dll
 C:\Users\gabriel.fernandes\Documents\GitHub\Projeto-Cadastros-Empresas-\backend\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\appsettings.json
+C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\dist\web.config
+C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\dist\appsettings.Development.json
+C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\dist\appsettings.json
+C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\dist\backend.deps.json
+C:\Users\Pichau\Documents\GitHub\Projeto-Cadastros-Empresas\backend\bin\Debug\net7.0\dist\backend.runtimeconfig.json
