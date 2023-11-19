@@ -1,8 +1,19 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "jest": "^29.7.0",
     "jquery": "^3.7.1",
     "jquery-mask-plugin": "^1.14.16",
     "notyf": "^3.10.0"
-  }
+  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

@@ -175,7 +175,10 @@
                     if (response.status == 200) {
                         mensagem("Sucesso!")
                         carregarPara("cadCompany.html")
-                    } else {
+                    }if(response.status == 422){
+                        throw "Empresa Vinculada a algum Fornecedor, não é possível excluir!"
+                    }
+                     else {
                         throw "Algo deu errado"
                     }
                 } catch (err) {

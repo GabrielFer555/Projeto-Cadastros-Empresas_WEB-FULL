@@ -80,7 +80,7 @@ const fornecedorEspecifico = async (id) => {
                 switch(data.tipoFornecedor){
                     case "f":{
                         $("#fisicasEdit").prop("checked",true);
-                        $("#bornDateEdit").val(data.dataNasc);
+                        $("#bornDateEdit").val((data.dataNasc).split("-").reverse().join("/"));
                         $("#rgCaseEdit").val(data.rg);
                         toggleCheck(2);
                         break;
