@@ -1,4 +1,4 @@
-var url = "http://localhost:5143";
+var url = "http://localhost:5000";
 
 const carregamento = (status) =>{
     switch(status){
