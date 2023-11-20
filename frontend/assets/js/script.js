@@ -122,7 +122,6 @@ const atualizaDadosFornecedor = async () => {
         const dados = await response.json();
         const table = document.getElementById('tcorpo');
         $("#numbers").text(dados.length)
-        console.log(dados);
         let data = '';
         for (ct of dados) {
             let dataformatada = new Date(ct.dataCad)
@@ -298,7 +297,6 @@ const carregarPara = (pagina, time = 250) => {
 
 }
 const mensagem = (msg, type = 1, duration = 1000, x = "left", y = "bottom") => {
-    console.log($(".form-control"))
     const i = new Notyf({
         duration: duration,
         position: {
