@@ -8,7 +8,7 @@ RUN dotnet restore
 
 #copia arquivos de projeto e faz o release
 COPY . ./
-RUN dotnet publish -c release -o out
+RUN dotnet publish -c Release -o out
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
